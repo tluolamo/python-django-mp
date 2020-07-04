@@ -1,4 +1,5 @@
 from django.db import models
+from .utils import random_file_name
 
 
 class Member(models.Model):
@@ -26,3 +27,21 @@ class Member(models.Model):
             models.Index(fields=['account_id']),
         ]
         ordering = ['id']
+
+
+class File(models.Model):
+    file = models.FileField(blank=False, null=False, upload_to=random_file_name)
+
+    def __str__(self):
+        return self.file.name
+
+#
+#
+# class FileUpload(models.Model):
+#     datafile = models.FileField()
+#
+#     def __str__(self):
+#         return self.file.name
+#
+#     class Meta:
+#         ordering = ['id']

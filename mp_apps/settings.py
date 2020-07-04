@@ -128,6 +128,6 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
     'EXCEPTION_HANDLER': 'mp_apps.mp_api.error_handling.custom_exception_handler',
-    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend', )
-    #'DEFAULT_FILTER_BACKENDS': 'rest_framework_json_api.filters.QueryParameterValidationFilter',
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend', ),
+    'DEFAULT_PARSER_CLASSES': ['rest_framework.parsers.JSONParser', ]
 }
