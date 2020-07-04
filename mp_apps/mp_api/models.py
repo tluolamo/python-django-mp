@@ -18,4 +18,11 @@ class Member(models.Model):
         return self.name
 
     class Meta:
+        constraints = [
+            models.UniqueConstraint(name='unique-phone_number-account_id', fields=['phone_number', 'account_id']),
+            models.UniqueConstraint(name='unique-client_member_id-account_id', fields=['client_member_id', 'account_id']),
+        ]
+        indexes = [
+            models.Index(fields=['account_id']),
+        ]
         ordering = ['id']
