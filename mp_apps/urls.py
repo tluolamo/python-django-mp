@@ -15,14 +15,15 @@ Including another URLconf
 """
 from django.urls import include, path
 from rest_framework import routers
+
 from mp_apps.mp_api import views
 
 router = routers.DefaultRouter()
-router.register(r'members', views.MemberViewSet)
-#router.register(r'upload', views.FileUploadViewSet)
+router.register(r"members", views.MemberViewSet)
+# router.register(r'upload', views.FileUploadViewSet)
 
 # Wire up our API using automatic URL routing.
 urlpatterns = [
-    path('', include(router.urls)),
-    path('upload/<filename>', views.FileUploadView.as_view())
+    path("", include(router.urls)),
+    path("upload/<filename>", views.FileUploadView.as_view()),
 ]
