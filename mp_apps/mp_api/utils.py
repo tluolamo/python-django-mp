@@ -1,10 +1,13 @@
+
 import csv
+import os
 import uuid
 from collections import defaultdict
+from io import StringIO
 
 from django.apps import apps
 
-from .models import Member
+from ..settings import BASE_DIR
 
 
 def random_file_name(instance, filename, prefix="upload"):
@@ -13,10 +16,22 @@ def random_file_name(instance, filename, prefix="upload"):
 
 
 def load_data(file):
+    from .models import Member
+
+    member_fields = [str(f).split(".")[2] for f in Member._meta.get_fields()]
+    member_fields.remove("id")
+    # print(MEMBER_FIELDS)
+    file = os.path.join(BASE_DIR, file)
+
     with open(file, "rb") as csv_file:
+        csvf = StringIO(csv_file.read().decode())
         bulk_mgr = BulkCreateManager(chunk_size=20)
-        for row in csv.reader(csv_file):
-            bulk_mgr.add(Member(attr1=row["attr1"], attr2=row["attr2"]))
+        for row in csv.DictReader(csvf, delimiter=","):
+            for k in [*row]:
+                if k not in member_fields:
+                    del row[k]
+
+            bulk_mgr.add(Member(**row))
         bulk_mgr.done()
 
 
@@ -36,7 +51,9 @@ class BulkCreateManager(object):
 
     def _commit(self, model_class):
         model_key = model_class._meta.label
-        model_class.objects.bulk_create(self._create_queues[model_key])
+        model_class.objects.bulk_create(
+            self._create_queues[model_key], ignore_conflicts=True
+        )
         self._create_queues[model_key] = []
 
     def add(self, obj):

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from mp_apps.mp_api.models import File, Member
+from .models import File, Member
 
 
 class MemberSerializer(serializers.HyperlinkedModelSerializer):
