@@ -6,8 +6,6 @@ import mp_apps.mp_api.utils
 
 class Migration(migrations.Migration):
 
-    replaces = [('mp_api', '0001_initial'), ('mp_api', '0002_auto_20200704_0002'), ('mp_api', '0003_auto_20200704_1539'), ('mp_api', '0004_file'), ('mp_api', '0005_fileupload'), ('mp_api', '0006_auto_20200704_2134')]
-
     initial = True
 
     dependencies = [
