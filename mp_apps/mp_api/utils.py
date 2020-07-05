@@ -1,4 +1,3 @@
-
 import csv
 import os
 import uuid
@@ -25,7 +24,7 @@ def load_data(file):
 
     with open(file, "rb") as csv_file:
         csvf = StringIO(csv_file.read().decode())
-        bulk_mgr = BulkCreateManager(chunk_size=20)
+        bulk_mgr = BulkCreateManager(chunk_size=1000)
         for row in csv.DictReader(csvf, delimiter=","):
             for k in [*row]:
                 if k not in member_fields:
