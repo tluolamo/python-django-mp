@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from mp_apps.mp_api.models import Member
 from mp_apps.mp_api.serializers import FileSerializer, MemberSerializer
 
-from .utils import load_data
+from .tasks import load_data
 
 
 class MemberViewSet(viewsets.ModelViewSet):
@@ -31,7 +31,8 @@ class FileUploadView(APIView):
 
         if file_serializer.is_valid():
             file_serializer.save()
-            load_data(file_serializer.data.get("file"))
+            load_data.delay(file_serializer.data.get("file"))
+            #print("after load data")
             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

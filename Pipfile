@@ -4,9 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
+Django = "*"
 djangorestframework = "*"
 django-filter = "*"
+redis = "*"
+celery = "*"
 
 [dev-packages]
 coverage = "*"
