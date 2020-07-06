@@ -13,7 +13,6 @@ from __future__ import absolute_import, unicode_literals
 
 import os
 
-# DEBUG=False
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -128,5 +127,12 @@ REST_FRAMEWORK = {
 }
 
 
-CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
-CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"
+CELERY_BROKER_URL = "sqla+sqlite:///celerydb.sqlite3"
+CELERY_RESULT_BACKEND = "db+sqlite:///celerydb.sqlite3"
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": "/tmp/django_cache",
+    }
+}
