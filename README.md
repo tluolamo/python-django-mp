@@ -4,7 +4,7 @@ This API uses [Django Rest Framework](https://www.django-rest-framework.org/) fo
 
 It also uses [Celery](https://docs.celeryproject.org/en/stable/) to handle uploaded file processing asynchronously.
 
-## Dev Environemnt
+## Dev Environment
 
 It is setup to use [SQLite3](https://www.sqlite.org/) for its main DB as well as for Celery.
 
@@ -26,6 +26,9 @@ Run migrations:
 
     ./manage.py migrate`
 
+If you want some sample data run this
+
+    ./manage.py loaddata test_data
 
 Start Celery:
 
