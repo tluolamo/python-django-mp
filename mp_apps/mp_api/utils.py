@@ -26,6 +26,7 @@ def load_data(file):
         csvf = StringIO(csv_file.read().decode())
         bulk_mgr = BulkCreateManager(chunk_size=1000)
         for row in csv.DictReader(csvf, delimiter=","):
+            # print(row)
             for k in [*row]:
                 if k not in member_fields:
                     del row[k]

@@ -19,7 +19,7 @@ class Member(models.Model):
     account_id = models.BigIntegerField()
 
     def __str__(self):
-        return self.name
+        return str(self.id)
 
     class Meta:
         constraints = [
@@ -42,4 +42,4 @@ class File(models.Model):
     file = models.FileField(upload_to=random_file_name)
 
     def __str__(self):
-        return self.file.name
+        return self.file

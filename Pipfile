@@ -9,6 +9,7 @@ djangorestframework = "*"
 django-filter = "*"
 
 [dev-packages]
+coverage = "*"
 
 [requires]
 python_version = "3.7"
