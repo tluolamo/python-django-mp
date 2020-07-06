@@ -117,7 +117,7 @@ class MemberTestCase(TestCase):
 class FileTestCase(TestCase):
     def test_file_upload(self):
         with open(os.path.join(CURRENT_DIR, "test_data/members.csv"), "rb") as fp:
-            response = test_client.put(
+            response = test_client.post(
                 "/upload/upload.csv",
                 fp.read(),
                 format="multipart",
@@ -135,5 +135,5 @@ class TaskTestCase(TestCase):
             source_file, filename,
         )
         load_data(filename)
-        self.assertFalse(os.path.exists(self.filename))
+        self.assertFalse(os.path.exists(filename))
         self.assertEqual(expected_item_count, len(Member.objects.all()))
