@@ -13,29 +13,24 @@ from ..settings import BASE_DIR
 
 @shared_task
 def load_data(file):
-    # print("in load data")
-    # import time
-    # time.sleep(20)
-    # print("sleep done")
+    """This will take a filepath from the base of the project to process into
+    the DB. It should look something like upload/somefile"""
     from .models import Member
 
     member_fields = [str(f).split(".")[2] for f in Member._meta.get_fields()]
     member_fields.remove("id")
-    # print(MEMBER_FIELDS)
     file = os.path.join(BASE_DIR, file)
 
     with open(file, "rb") as csv_file:
         csvf = StringIO(csv_file.read().decode())
         bulk_mgr = BulkCreateManager(chunk_size=1000)
         for row in csv.DictReader(csvf, delimiter=","):
-            # print(row)
             for k in [*row]:
                 if k not in member_fields:
                     del row[k]
 
             bulk_mgr.add(Member(**row))
         bulk_mgr.done()
-    # print("load data finished")
     os.remove(file)
 
 
