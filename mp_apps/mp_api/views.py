@@ -32,7 +32,7 @@ class FileUploadView(APIView):
         if file_serializer.is_valid():
             file_serializer.save()
             load_data.delay(file_serializer.data.get("file"))
-            #print("after load data")
+            # print("after load data")
             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

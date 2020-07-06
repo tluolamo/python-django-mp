@@ -14,8 +14,8 @@ from ..settings import BASE_DIR
 @shared_task
 def load_data(file):
     # print("in load data")
-    #import time
-    #time.sleep(20)
+    # import time
+    # time.sleep(20)
     # print("sleep done")
     from .models import Member
 
