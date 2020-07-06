@@ -8,14 +8,15 @@ It also uses [Celery](https://docs.celeryproject.org/en/stable/) to handle uploa
 
 It is setup to use [SQLite3](https://www.sqlite.org/) for its main DB as well as for Celery.
 
-To get up and running I recommend using virtual environment, specifically [pipenv](https://pypi.org/project/pipenv/) makes cresting the environment.
+To get up and running I recommend using virtual environment, specifically [pipenv](https://pypi.org/project/pipenv/) makes creating the environment easy.
 
 ### Setup instructions:
+RHis was developed on Python 3.7 and it is part of the requirements, but should run on most any version of Python 3. If you are using version other than 3.7 then change the Pipfile `[requires]` section `python_version` to your version and delete the `Pipfile.lock` first 
 Go into the project root folder, then run the following:
 
 To create the environment:
 
-    pipenv install
+    pipenv install --dev
 
 Get into the environment
 
