@@ -81,3 +81,48 @@ To run the tests you can do
 To get coverage report you can do
 
     coverage run manage.py test; coverage report
+
+## Example usage
+
+List Members
+
+    curl --location --request GET 'http://127.0.0.1:8000/members/'
+
+Get member by id
+
+    curl --location --request GET 'http://127.0.0.1:8000/members/1'
+
+Get members by account id
+
+    curl --location --request GET 'http://127.0.0.1:8000/members/?account_id=12'
+
+Get members by phone number
+
+    curl --location --request GET 'http://127.0.0.1:8000/members/?phone_number=1229470940'
+
+Get members by client member id
+
+    curl --location --request GET 'http://127.0.0.1:8000/members/?client_member_id=1289283'
+
+You can also do combinations of the above filters
+
+    curl --location --request GET 'http://127.0.0.1:8000/members/?account_id=5&phone_number=2642745297'
+
+Create new member
+
+    curl --location --request POST 'http://127.0.0.1:8000/members/' \
+    --header 'Content-Type: application/json' \
+    --data-raw '
+    {
+    "first_name": "John",
+    "last_name": "Doe",
+    "phone_number": 8185551212,
+    "client_member_id": 1,
+    "account_id": 1
+    }'
+
+Upload a file
+
+    curl --location --request POST 'http://127.0.0.1:8000/upload/new_member_data.csv' \
+    --header 'Content-Type: text/csv' \
+    --data-binary '@/path/to/my/file/new_member_data.csv'
