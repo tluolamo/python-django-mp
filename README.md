@@ -41,6 +41,10 @@ For production you want to use something other than SQLite3 for the data storage
 
 You also need to make sure `DEBUG=False` and provide appropriate `ALLOWED_HOSTS` setting.
 
+Finally you want to use the following command to install the last known good environment:
+
+    pipenv install --ignore-pipfile
+
 ### DB
 For the main DB good alternative would be [PostgreSQL](https://www.postgresql.org/) you can get a instance from [ElephantSQL](https://www.elephantsql.com/) as a service. To configure Django to use it instead you will settings file:
 
